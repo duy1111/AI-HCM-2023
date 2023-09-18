@@ -1,22 +1,40 @@
 
 
 // import Categories from "./Categories";
+import {  useSelector } from "react-redux";
+import { Button } from "../../components";
 import Container from "./Container";
-import { Logo } from "./Logo";
+import OCRsearch from "./OCRsearch";
+import ObjectDetection from "./ObjectSearch";
 import Search from "./Search";
-import UserMenu from "./UserMenu";
+import { SubmitPath } from "../../services/image";
+import Swal from "sweetalert2";
+import { useEffect } from "react";
 
 
 
 const Navbar= ({currentUser}) => {
+    const {images} = useSelector(state => state.image)
+    const submit = async() => {
+        const response = await SubmitPath({
+            submit_list: images
+        })
+        if (response && response.status === 200) {
+            Swal.fire('Thành công', 'Đã Submit', 'success');
+        } else if (response && response.data?.err !== 0) {
+
+            Swal.fire('Oops !', 'Có lỗi gì rồi đấy', 'error');
+        }
+    }
     return ( 
         <div className="fixed w-full bg-white z-10 shadow-sm" >
             <div className="p-4 border-b " >
                 <Container>
                     <div className="flex items-center justify-between gap-3 md:gap-0">
-                        <Logo/>
-                        <Search/>
-                        <UserMenu />
+                        <Search label='text search' />
+                        <OCRsearch data={images} label='ocr search' />
+                        <ObjectDetection data={images} label='object detection' />
+                        <Button small label={'Submit'} onClick={submit} />
                     </div>
                 </Container>
             </div>

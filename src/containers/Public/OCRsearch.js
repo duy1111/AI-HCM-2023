@@ -1,17 +1,23 @@
 
 import React, {  useState} from 'react'
 import {BiSearch} from 'react-icons/bi'
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import * as actions from '../../store/actions'
 
-const Search = (disabled,label,sendImage) => {
+
+const  OCRsearch = (data) => {
+    const dispatch = useDispatch()
+
+
     const [payload, setPayload] = useState({
-        query:''
+        query:'',
     })
 
-    const navigate = useNavigate();
     
-    const handleSearch = () => {
-        navigate(`?query=${payload.query}`);   
+    const handleSearchOCR = async() => {
+        
+        dispatch(actions.getOcrSearch(payload,data))
+        
     }
     
     
@@ -25,14 +31,14 @@ const Search = (disabled,label,sendImage) => {
             <div
                 className='text-sm font-semibold px-6'
             >
-                <input value={payload.query} onChange={e => setPayload({...payload, query : e.target.value})} className=' outline-none text-gray-400 w-full pr-[12px] pl-[13px]' placeholder={'text search'} />
+                <input value={payload.query} onChange={e => setPayload({...payload, query : e.target.value})} className=' outline-none text-gray-400 w-full pr-[12px] pl-[13px]' placeholder={'orc search'} />
             </div>
             
             <div
                 className='text-sm pl-6 pr-2 text-gray-600 flex flex-row items-center gap-3'
             >
                 
-                <div className='p-2 bg-rose-500 rounded-full text-white' onClick={handleSearch} >
+                <div className='p-2 bg-rose-500 rounded-full text-white' onClick={handleSearchOCR} >
                     <BiSearch size={18}  />
                 </div>
             </div>
@@ -41,4 +47,4 @@ const Search = (disabled,label,sendImage) => {
   )
 }
 
-export default Search
+export default OCRsearch

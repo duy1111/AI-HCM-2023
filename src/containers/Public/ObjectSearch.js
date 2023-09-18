@@ -1,17 +1,18 @@
 
 import React, {  useState} from 'react'
 import {BiSearch} from 'react-icons/bi'
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../../store/actions'
 
-const Search = (disabled,label,sendImage) => {
+const ObjectDetection = (data) => {
+    const dispatch = useDispatch()
+
     const [payload, setPayload] = useState({
-        query:''
+        object:''
     })
 
-    const navigate = useNavigate();
-    
     const handleSearch = () => {
-        navigate(`?query=${payload.query}`);   
+        dispatch(actions.getObjectDetection(payload,data))         
     }
     
     
@@ -25,7 +26,7 @@ const Search = (disabled,label,sendImage) => {
             <div
                 className='text-sm font-semibold px-6'
             >
-                <input value={payload.query} onChange={e => setPayload({...payload, query : e.target.value})} className=' outline-none text-gray-400 w-full pr-[12px] pl-[13px]' placeholder={'text search'} />
+                <input value={payload.query} onChange={e => setPayload({...payload, object : e.target.value})} className=' outline-none text-gray-400 w-full pr-[12px] pl-[13px]' placeholder={'object detection'} />
             </div>
             
             <div
@@ -41,4 +42,4 @@ const Search = (disabled,label,sendImage) => {
   )
 }
 
-export default Search
+export default ObjectDetection

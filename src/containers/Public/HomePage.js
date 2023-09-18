@@ -8,10 +8,8 @@ import { useSearchParams } from 'react-router-dom';
 
 const HomePage = () => {
     let [searchParams] = useSearchParams()
-    const listRef = useRef()
     const dispatch = useDispatch()
     const {images} = useSelector(state => state.image)
-    console.log(images)
     useEffect(() =>{
       let params = []
         for (let entry of searchParams.entries()) {
@@ -28,10 +26,7 @@ const HomePage = () => {
             }
         })
       
-        console.log('check ',searchParamsObject)
-
-
-      dispatch(actions.getImageLimit(searchParamsObject))
+      dispatch(actions.getTextLimit(searchParamsObject))
       // listRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     },[searchParams])
    
@@ -52,7 +47,7 @@ const HomePage = () => {
             {images.map((listing) => (
               <ListingCard
                 
-                key={listing.id}
+                key={listing.image_path}
                 data={listing}
               />
             ))}

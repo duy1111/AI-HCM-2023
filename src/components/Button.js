@@ -18,7 +18,7 @@ const Button =  ({
         outline ? "bg-white" : "bg-rose-400"
       } ${outline ? "border-black" : "border-rose-400"} ${
         outline ? "text-black" : "text-white"
-      } ${small?'py-1 text-sm font-light border':'py-3 text-md font-semibold border-2'}`}
+      } ${small?'py-1 w-[100px] text-sm font-light border':'py-3 text-md font-semibold border-2'}`}
     >
 
       {Icon && (
