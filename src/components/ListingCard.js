@@ -51,12 +51,13 @@ const ListingCard = ({
               <Button
                 small
                 label="Segment"
-                onClick={imgSearch}
+                onClick={segment}
+
               />
               <Button
                 small
                 label="Img Search"
-                onClick={segment}
+                onClick={imgSearch}
               />
               <Button
                 small

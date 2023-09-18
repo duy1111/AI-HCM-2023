@@ -16,7 +16,7 @@ const  OCRsearch = (data) => {
     
     const handleSearchOCR = async() => {
         
-        dispatch(actions.getOcrSearch(payload,data))
+        dispatch(actions.getOcrSearch(payload,data.data))
         
     }
     

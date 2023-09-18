@@ -18,13 +18,13 @@ export const apiGetOcrSearch = (query, data) => {
 
     return new Promise(async (resolve, reject) => {
       try {
+        console.log('dataa',data)
+
         const response = await axios({
           method: 'post',
           url: '/ocr-search',
           params: query, // Gửi truy vấn tìm kiếm qua param,
-          data: {
-            image_list : data
-          }
+          data: data
         });
         resolve(response);
       } catch (e) {

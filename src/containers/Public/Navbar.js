@@ -34,7 +34,7 @@ const Navbar= ({currentUser}) => {
                         <Search label='text search' />
                         <OCRsearch data={images} label='ocr search' />
                         <ObjectDetection data={images} label='object detection' />
-                        <Button small label={'Submit'} onClick={submit} />
+                        <div className="w-[120px] flex flex-col justify-center items-center"><Button small label={'Submit'} onClick={submit} /></div>
                     </div>
                 </Container>
             </div>

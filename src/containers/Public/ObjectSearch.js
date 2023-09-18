@@ -12,7 +12,7 @@ const ObjectDetection = (data) => {
     })
 
     const handleSearch = () => {
-        dispatch(actions.getObjectDetection(payload,data))         
+        dispatch(actions.getObjectDetection(payload,data.data))         
     }
     
     
