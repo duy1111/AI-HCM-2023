@@ -47,7 +47,7 @@ const HomePage = () => {
             {images.map((listing) => (
               <ListingCard
                 
-                key={listing.image_path}
+                key={listing?.image_path}
                 data={listing}
               />
             ))}

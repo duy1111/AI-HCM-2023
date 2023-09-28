@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import * as actions from '../../store/actions'
 
 
-const  OCRsearch = (data) => {
+const  OCRsearch = ({data}) => {
     const dispatch = useDispatch()
 
 
@@ -16,7 +16,7 @@ const  OCRsearch = (data) => {
     
     const handleSearchOCR = async() => {
         
-        dispatch(actions.getOcrSearch(payload,data.data))
+        dispatch(actions.getOcrSearch(payload,data))
         
     }
     

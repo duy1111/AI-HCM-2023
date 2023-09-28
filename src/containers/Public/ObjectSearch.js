@@ -4,7 +4,7 @@ import {BiSearch} from 'react-icons/bi'
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/actions'
 
-const ObjectDetection = (data) => {
+const ObjectDetection = ({data}) => {
     const dispatch = useDispatch()
 
     const [payload, setPayload] = useState({
@@ -12,7 +12,7 @@ const ObjectDetection = (data) => {
     })
 
     const handleSearch = () => {
-        dispatch(actions.getObjectDetection(payload,data.data))         
+        dispatch(actions.getObjectDetection(payload,data))         
     }
     
     

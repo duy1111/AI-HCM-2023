@@ -9,16 +9,13 @@ import ObjectDetection from "./ObjectSearch";
 import Search from "./Search";
 import { SubmitPath } from "../../services/image";
 import Swal from "sweetalert2";
-import { useEffect } from "react";
 
 
 
 const Navbar= ({currentUser}) => {
     const {images} = useSelector(state => state.image)
     const submit = async() => {
-        const response = await SubmitPath({
-            submit_list: images
-        })
+        const response = await SubmitPath(images)
         if (response && response.status === 200) {
             Swal.fire('Thành công', 'Đã Submit', 'success');
         } else if (response && response.data?.err !== 0) {
@@ -38,7 +35,6 @@ const Navbar= ({currentUser}) => {
                     </div>
                 </Container>
             </div>
-            {/* <Categories/> */}
         </div>
      );
 }
