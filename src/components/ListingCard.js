@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import Button from './Button'; // Import component Button (đảm bảo bạn đã import đúng component)
 import { useDispatch } from 'react-redux';
 import * as actions from '../store/actions'
-
+import { useRoutes } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
+import { path } from '../utils/constant';
 const ListingCard = ({
   data,
   onAction,
@@ -10,11 +12,20 @@ const ListingCard = ({
   actionLabel,
   actionId = '',
 }) => {
+  const formatVietnameseToString = (keyword) => {
+    return keyword
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .split(" ",)
+    .join("-")
+  }
   const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch()
   const [payload, setPayload] = useState({
     image_path: data.image_path
   })
+
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -29,7 +40,7 @@ const ListingCard = ({
     dispatch(actions.getImageLimit(payload))
   }
   const viewDetail = () => {
-
+    
   }
 
   return (
@@ -59,11 +70,13 @@ const ListingCard = ({
                 label="Img Search"
                 onClick={imgSearch}
               />
-              <Button
-                small
-                label="View Detail"
-                onClick={viewDetail}
-              />
+              <a className='w-full' target='_blank' href={`http://0.0.0.0:8000/${data.image_path}`} >
+                <Button
+                  small
+                  label="View Detail"
+                  onClick={viewDetail}
+                />
+              </a>
             </div>
           )}
         </div>
